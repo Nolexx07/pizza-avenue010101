@@ -1,0 +1,6 @@
+.DS_Store
+report.html
+report.json
+.prepros-*
+prepros-6.config
+*.log
