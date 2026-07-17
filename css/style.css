@@ -8886,94 +8886,218 @@ textarea.form-control {
 
 #ftco-loader {
   position: fixed;
-  width: 96px;
-  height: 96px;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
-  -webkit-box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.24);
-  box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.24);
-  border-radius: 16px;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: opacity .2s ease-out, visibility 0s linear .2s;
-  -o-transition: opacity .2s ease-out, visibility 0s linear .2s;
-  transition: opacity .2s ease-out, visibility 0s linear .2s;
-  z-index: 1000; }
-
-#ftco-loader.fullscreen {
-  padding: 0;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  background-color: #fff;
-  border-radius: 0;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
+  background: radial-gradient(circle at center, #1a1512 0%, #080706 100%);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s linear, -webkit-transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), -webkit-filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s linear, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden; }
+
+#ftco-loader.fullscreen {
+  width: 100%;
+  height: 100%; }
 
 #ftco-loader.show {
-  -webkit-transition: opacity .4s ease-out, visibility 0s linear 0s;
-  -o-transition: opacity .4s ease-out, visibility 0s linear 0s;
-  transition: opacity .4s ease-out, visibility 0s linear 0s;
   visibility: visible;
   opacity: 1; }
 
-#ftco-loader .circular {
-  -webkit-animation: loader-rotate 2s linear infinite;
-  animation: loader-rotate 2s linear infinite;
-  position: absolute;
-  left: calc(50% - 24px);
-  top: calc(50% - 24px);
-  display: block;
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg); }
+#ftco-loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(1.08);
+  -ms-transform: scale(1.08);
+  transform: scale(1.08);
+  -webkit-filter: blur(10px);
+  filter: blur(10px); }
 
-#ftco-loader .path {
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
-  -webkit-animation: loader-dash 1.5s ease-in-out infinite;
-  animation: loader-dash 1.5s ease-in-out infinite;
-  stroke-linecap: round; }
+body.loader-active {
+  overflow: hidden !important;
+  height: 100vh !important; }
 
-@-webkit-keyframes loader-rotate {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+/* Welcoming Loader Content Layout */
+.loader-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  max-width: 450px;
+  padding: 20px; }
 
-@keyframes loader-rotate {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+.loader-logo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 25px; }
 
-@-webkit-keyframes loader-dash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0; }
+/* SVG Pizza Icon Animations */
+.pizza-icon {
+  -webkit-animation: logo-pulse 2.2s ease-in-out infinite 1.6s;
+  animation: logo-pulse 2.2s ease-in-out infinite 1.6s; }
+
+.pizza-crust {
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  -webkit-animation: draw-crust 1.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: draw-crust 1.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+.pizza-slice {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  -webkit-animation: draw-slice 1.3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+  animation: draw-slice 1.3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards; }
+
+.pizza-pepperoni {
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-animation: pop-pepperoni 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards;
+  animation: pop-pepperoni 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards; }
+
+/* Welcoming Typography & Separators */
+.loader-title {
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fac564;
+  letter-spacing: 0.25em;
+  margin: 15px 0 5px 0;
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+  -ms-transform: translateY(20px);
+  transform: translateY(20px);
+  -webkit-animation: fade-slide-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+  animation: fade-slide-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards; }
+
+.loader-divider {
+  width: 0;
+  height: 1px;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#fac564), to(transparent));
+  background: -o-linear-gradient(left, transparent, #fac564, transparent);
+  background: linear-gradient(90deg, transparent, #fac564, transparent);
+  margin: 15px auto;
+  -webkit-animation: grow-width 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+  animation: grow-width 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards; }
+
+.loader-subtitle {
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin-bottom: 12px;
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+  -ms-transform: translateY(20px);
+  transform: translateY(20px);
+  -webkit-animation: fade-slide-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) 1.1s forwards;
+  animation: fade-slide-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) 1.1s forwards; }
+
+.loader-tagline {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #a09890;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 5px;
+  opacity: 0;
+  -webkit-animation: fade-in 1.2s ease-out 1.5s forwards;
+  animation: fade-in 1.2s ease-out 1.5s forwards; }
+
+/* Preloader Keyframes */
+@-webkit-keyframes draw-crust {
+  to { stroke-dashoffset: 0; } }
+@keyframes draw-crust {
+  to { stroke-dashoffset: 0; } }
+
+@-webkit-keyframes draw-slice {
+  to { stroke-dashoffset: 0; } }
+@keyframes draw-slice {
+  to { stroke-dashoffset: 0; } }
+
+@-webkit-keyframes pop-pepperoni {
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1); } }
+@keyframes pop-pepperoni {
+  to {
+    opacity: 1;
+    transform: scale(1); } }
+
+@-webkit-keyframes logo-pulse {
+  0%, 100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-filter: drop-shadow(0 0 4px rgba(250, 197, 100, 0.25));
+    filter: drop-shadow(0 0 4px rgba(250, 197, 100, 0.25)); }
   50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px; }
-  100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -136px; } }
-
-@keyframes loader-dash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0; }
+    -webkit-transform: scale(1.04);
+    transform: scale(1.04);
+    -webkit-filter: drop-shadow(0 0 12px rgba(250, 197, 100, 0.55));
+    filter: drop-shadow(0 0 12px rgba(250, 197, 100, 0.55)); } }
+@keyframes logo-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(250, 197, 100, 0.25)); }
   50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px; }
-  100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -136px; } }
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 12px rgba(250, 197, 100, 0.55)); } }
+
+@-webkit-keyframes fade-slide-up {
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+@keyframes fade-slide-up {
+  to {
+    opacity: 1;
+    transform: translateY(0); } }
+
+@-webkit-keyframes grow-width {
+  to { width: 160px; } }
+@keyframes grow-width {
+  to { width: 160px; } }
+
+@-webkit-keyframes fade-in {
+  to { opacity: 1; } }
+@keyframes fade-in {
+  to { opacity: 1; } }
 
 /* BRAND IDENTITY UPGRADE - CUSTOM OVERRIDES */
 

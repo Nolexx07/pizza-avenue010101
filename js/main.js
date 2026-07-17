@@ -34,11 +34,16 @@
 
 	// loader
 	var loader = function() {
+		$('body').addClass('loader-active');
 		setTimeout(function() { 
 			if($('#ftco-loader').length > 0) {
-				$('#ftco-loader').removeClass('show');
+				$('#ftco-loader').addClass('fade-out');
+				setTimeout(function() {
+					$('#ftco-loader').removeClass('show fade-out');
+					$('body').removeClass('loader-active');
+				}, 800);
 			}
-		}, 1);
+		}, 2000);
 	};
 	loader();
 
