@@ -10397,6 +10397,7 @@ li > span,
 
 /* Counter numbers — clean editorial display */
 .ftco-counter .text strong.number,
+.ftco-counter .text strong.rating-number,
 .ftco-counter .ftco-number {
   font-family: 'Cormorant Garamond', serif !important;
   font-size: 56px !important;
@@ -11759,8 +11760,12 @@ body::before {
 /* background-attachment:fixed is broken on iOS/mobile browsers.
    The body::before fixed overlay can also block touch events. */
 @media (max-width: 991.98px) {
-  body {
+  html, body {
     background-attachment: scroll !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
   body::before {
     display: none !important;
@@ -11770,6 +11775,16 @@ body::before {
   .ftco-counter,
   .ftco-footer.img {
     background-attachment: scroll !important;
+  }
+  .owl-carousel,
+  .owl-stage-outer,
+  .owl-stage,
+  .owl-item,
+  .slider-item,
+  .slider-item .overlay,
+  .slider-item .container,
+  .slider-item .slider-text {
+    touch-action: pan-y !important;
   }
 }
 
